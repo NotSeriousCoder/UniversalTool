@@ -158,7 +158,7 @@ public class TimeCounter<V extends TextView> extends CountDownTimer {
         }
 
         public static <V extends TextView> TimeCounter createDefaultCounter(V view) {
-            return new Builder(60000, view)
+            return new Builder(60, view)
                     .setCountPosition(0)
                     .setTextCounting("秒后重新获取")
                     .setTextDefault("获取验证码")
