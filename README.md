@@ -1,6 +1,21 @@
 # UniversalTool
 通用工具集成库
 
+## 引用方法
+### 1.在项目的Gradle文件
+	allprojects {
+		repositories {
+			.......
+			maven { url 'https://jitpack.io' }
+		}
+	}
+  
+### 2.在你要用这个控件的模块gradle文件
+	implementation 'com.github.NotSeriousCoder:UniversalTool:{lastversion}'
+	lastversion目前是1.0.3
+
+## 使用方法
+
 ## KeyBoardUtil--控制软键盘
 
 ## TimeCounter--计时器
