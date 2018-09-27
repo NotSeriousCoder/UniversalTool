@@ -38,7 +38,7 @@
    ####	1.使用方法
    
 	//选择本地图片
-        //cut：true==裁剪 false==不裁减
+	//cut：true==裁剪 false==不裁减
         TakePictureUtil.pickPhotoLocal(true, activity);
 	
 	//拍照
@@ -47,13 +47,13 @@
         TakePictureUtil.takePhotoCamera(true, file, activity);
 	
 	@Override
-    	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         	super.onActivityResult(requestCode, resultCode, data);
         	//接收结果
         	//不裁减的话，target不用传
         	//裁剪的话，传入target，target是接收裁减后图像的File
         	File image = TakePictureUtil.handleResult(activity, requestCode, resultCode, data, target);
 		...
-    	}
+	}
 	
 	
