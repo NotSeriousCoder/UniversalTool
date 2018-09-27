@@ -51,8 +51,7 @@ public class TakePictureUtil {
     /**
      * 选取本地图片
      */
-    public static void pickPhotoLocal(boolean cut, File outputFile, Activity activity) {
-        imageFile = outputFile;
+    public static void pickPhotoLocal(boolean cut, Activity activity) {
         Intent intent = new Intent("android.intent.action.GET_CONTENT");
         intent.setType("image/*");
         if (cut) {
