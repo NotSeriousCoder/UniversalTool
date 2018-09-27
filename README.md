@@ -39,20 +39,20 @@
    
 	//选择本地图片
 	//cut：true==裁剪 false==不裁减
-        TakePictureUtil.pickPhotoLocal(true, activity);
+	TakePictureUtil.pickPhotoLocal(true, activity);
 	
 	//拍照
-        //cut：true==裁剪 false==不裁减
-        //file 指定存放拍照图片的地址
-        TakePictureUtil.takePhotoCamera(true, file, activity);
+	//cut：true==裁剪 false==不裁减
+	//file 指定存放拍照图片的地址
+	TakePictureUtil.takePhotoCamera(true, file, activity);
 	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        	super.onActivityResult(requestCode, resultCode, data);
-        	//接收结果
-        	//不裁减的话，target不用传
-        	//裁剪的话，传入target，target是接收裁减后图像的File
-        	File image = TakePictureUtil.handleResult(activity, requestCode, resultCode, data, target);
+		super.onActivityResult(requestCode, resultCode, data);
+		//接收结果
+		//不裁减的话，target不用传
+		//裁剪的话，传入target，target是接收裁减后图像的File
+		File image = TakePictureUtil.handleResult(activity, requestCode, resultCode, data, target);
 		...
 	}
 	
