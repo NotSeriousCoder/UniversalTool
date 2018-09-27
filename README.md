@@ -43,7 +43,7 @@
 	
 	//拍照
 	//cut：true==裁剪 false==不裁减
-	//file 指定存放拍照图片的地址
+	//file：指定存放拍照图片的地址
 	TakePictureUtil.takePhotoCamera(true, file, activity);
 	
 	@Override
