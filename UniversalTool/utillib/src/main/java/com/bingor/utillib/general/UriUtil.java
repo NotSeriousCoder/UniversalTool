@@ -19,7 +19,7 @@ import java.io.File;
  */
 
 public class UriUtil {
-    public static final String FILE_PROVIDER_AUTHORITIES = "com.bingor.universaltool.fileprovider";
+    public static String FILE_PROVIDER_AUTHORITIES;
 
     /**
      * 将File转换成Uri
