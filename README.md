@@ -36,7 +36,11 @@
 	
 ## TakePictureUtil--获取图片工具
    ####	1.使用方法
-   
+	
+	//7.0以上先配置FileProvider
+	//可以参考https://www.jianshu.com/p/55eae30d133c
+	UriUtil.FILE_PROVIDER_AUTHORITIES = 你自己的authorities
+	
 	//选择本地图片
 	//cut：true==裁剪 false==不裁减
 	TakePictureUtil.pickPhotoLocal(true, activity);
