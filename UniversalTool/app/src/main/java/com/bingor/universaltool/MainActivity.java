@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.bingor.utillib.imageutil.ImageCompressor;
 import com.bingor.utillib.imageutil.TakePictureUtil;
 
 import java.io.File;
@@ -14,7 +15,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 //        //选择本地图片
 //        //cut：true==裁剪 false==不裁减
 //        TakePictureUtil.pickPhotoLocal(true, activity);
