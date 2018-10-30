@@ -33,6 +33,7 @@ public class TimeCounter<V extends TextView> extends CountDownTimer {
     private int countPosition;
     private boolean pause, ticking;
     private V view;
+    private OnTimeCountListener onTimeCountListener;
 
     /**
      * @param secondsInFuture 总时长(秒)
@@ -57,6 +58,10 @@ public class TimeCounter<V extends TextView> extends CountDownTimer {
         count = textCounting.substring(0, countPosition) + (millisUntilFinished / 1000) + textCounting.substring(countPosition, textCounting.length());
         view.setClickable(false);
         view.setText(count);
+
+        if (onTimeCountListener != null) {
+            onTimeCountListener.onCount(count);
+        }
     }
 
     @Override
@@ -67,6 +72,9 @@ public class TimeCounter<V extends TextView> extends CountDownTimer {
         }
         //计时完毕时触发
         showDefault();
+        if (onTimeCountListener != null) {
+            onTimeCountListener.onFinish(textDefault);
+        }
     }
 
     /**
@@ -152,18 +160,29 @@ public class TimeCounter<V extends TextView> extends CountDownTimer {
             return this;
         }
 
+        public Builder setOnTimeCountListener(OnTimeCountListener onTimeCountListener) {
+            timeCounter.onTimeCountListener = onTimeCountListener;
+            return this;
+        }
+
         public TimeCounter create() {
             timeCounter.init();
             return timeCounter;
         }
 
+
         public static <V extends TextView> TimeCounter createDefaultCounter(V view) {
+            return createDefaultCounter(view, null);
+        }
+
+        public static <V extends TextView> TimeCounter createDefaultCounter(V view, OnTimeCountListener onTimeCountListener) {
             return new Builder(60, view)
                     .setCountPosition(0)
                     .setTextCounting("秒后重新获取")
                     .setTextDefault("获取验证码")
                     .setTextPreCount("正在获取验证码")
                     .setTextRetry("重新获取验证码")
+                    .setOnTimeCountListener(onTimeCountListener)
                     .create();
         }
 
@@ -191,5 +210,11 @@ public class TimeCounter<V extends TextView> extends CountDownTimer {
                 }
             }
         }
+    }
+
+    public interface OnTimeCountListener {
+        public void onCount(String count);
+
+        public void onFinish(String textDefault);
     }
 }

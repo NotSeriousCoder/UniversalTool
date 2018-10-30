@@ -7,10 +7,10 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/bt_imei"
+    <TextView
+        android:id="@+id/tv_counter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="获取IMEI" />
+        android:text="计数器" />
 
 </LinearLayout>
