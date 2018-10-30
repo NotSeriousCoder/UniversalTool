@@ -197,10 +197,15 @@ public class TimeCounter<V extends TextView> extends CountDownTimer {
         }
 
         public static <V extends TextView> boolean restart(V view) {
+            return restart(view, null);
+        }
+
+        public static <V extends TextView> boolean restart(V view, OnTimeCountListener onTimeCountListener) {
             if (timeCounter == null) {
                 return false;
             } else {
                 timeCounter.view = view;
+                timeCounter.onTimeCountListener = onTimeCountListener;
                 timeCounter.restart();
                 if (timeCounter.ticking) {
                     timeCounter.showCount();
