@@ -9,6 +9,7 @@ import android.content.res.AssetFileDescriptor;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Build;
+import android.provider.Settings;
 import android.telephony.TelephonyManager;
 
 
@@ -162,5 +163,10 @@ public class DeviceUtil {
         if (mediaPlayer != null) {
             mediaPlayer.start();
         }
+    }
+
+
+    public static String getImeiId(Activity activity) {
+        return Settings.Secure.getString(activity.getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
     }
 }

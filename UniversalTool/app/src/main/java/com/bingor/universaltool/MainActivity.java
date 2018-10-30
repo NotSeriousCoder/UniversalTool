@@ -3,7 +3,10 @@ package com.bingor.universaltool;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 
+import com.bingor.utillib.hardware.DeviceUtil;
 import com.bingor.utillib.imageutil.ImageCompressor;
 import com.bingor.utillib.imageutil.TakePictureUtil;
 
@@ -23,6 +26,14 @@ public class MainActivity extends AppCompatActivity {
         //cut：true==裁剪 false==不裁减
         //file 指定存放拍照图片的地址
 //        TakePictureUtil.takePhotoCamera(true, file, activity);
+
+        findViewById(R.id.bt_imei).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String aa = DeviceUtil.getImeiId(MainActivity.this);
+                Log.d("HXB", "IMEI==" + (aa == null ? "null" : aa));
+            }
+        });
     }
 
     @Override
