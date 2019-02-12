@@ -1,20 +1,15 @@
 package com.bingor.universaltool;
 
 import android.content.Intent;
+import android.graphics.Point;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 
-import com.bingor.utillib.TimeCounter;
-import com.bingor.utillib.hardware.DeviceUtil;
-import com.bingor.utillib.imageutil.ImageCompressor;
-import com.bingor.utillib.imageutil.TakePictureUtil;
-
-import java.io.File;
+import com.bingor.utillib.hardware.ScreenUtil;
 
 public class MainActivity extends AppCompatActivity {
+    private TextView tvCounter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,24 +24,31 @@ public class MainActivity extends AppCompatActivity {
         //file 指定存放拍照图片的地址
 //        TakePictureUtil.takePhotoCamera(true, file, activity);
 
-        findViewById(R.id.tv_counter).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                TimeCounter.Builder
-                        .createDefaultCounter((TextView) findViewById(R.id.tv_counter), new TimeCounter.OnTimeCountListener() {
-                            @Override
-                            public void onCount(String count) {
-                                Log.d("HXB", count);
-                            }
+        tvCounter = findViewById(R.id.tv_counter);
+//        findViewById(R.id.tv_counter).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                TimeCounter.Builder
+//                        .createDefaultCounter((TextView) findViewById(R.id.tv_counter), new TimeCounter.OnTimeCountListener() {
+//                            @Override
+//                            public void onCount(String count) {
+//                                Log.d("HXB", count);
+//                            }
+//
+//                            @Override
+//                            public void onFinish(String textDefault) {
+//                                Log.d("HXB", textDefault);
+//                            }
+//                        })
+//                        .start();
+//            }
+//        });
 
-                            @Override
-                            public void onFinish(String textDefault) {
-                                Log.d("HXB", textDefault);
-                            }
-                        })
-                        .start();
-            }
-        });
+
+        Point size = ScreenUtil.getScreenSize(this);
+        tvCounter.setText("width==" + size.x + "   height==" + size.y);
+
+
     }
 
     @Override
