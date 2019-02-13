@@ -1,5 +1,6 @@
 package com.bingor.utillib.hardware;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Point;
 import android.view.WindowManager;
@@ -18,5 +19,15 @@ public class ScreenUtil {
 
     public static int getScreenOrientation(Context context) {
         return context.getResources().getConfiguration().orientation;
+    }
+
+    /**
+     * 不能有注释吗？
+     * @param context
+     * @return
+     */
+    public static int getScreenRotation(Context context) {
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        return wm.getDefaultDisplay().getRotation();
     }
 }

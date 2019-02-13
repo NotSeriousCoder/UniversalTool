@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
 //        Point size = ScreenUtil.getScreenSize(this);
 //        tvCounter.setText("width==" + size.x + "   height==" + size.y);
-        tvCounter.setText("orientation==" + ScreenUtil.getScreenOrientation(this));
+        tvCounter.setText("orientation==" + ScreenUtil.getScreenRotation(this));
 
 
     }
