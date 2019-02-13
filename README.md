@@ -18,6 +18,10 @@
 
 ## KeyBoardUtil--控制软键盘
 
+## ScreenUtil--屏幕相关工具类
+   ###### getScreenSize--获取屏幕尺寸
+   ###### getScreenOrientation--获取屏幕方向
+
 ## TimeCounter--计时器
    #### 1.初步使用
         TimeCounter.Builder.createDefaultCounter(View).start()  创建默认计时器，所有参数默认，时长60s
