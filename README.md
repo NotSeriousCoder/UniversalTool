@@ -19,6 +19,8 @@
 ## KeyBoardUtil--控制软键盘
 
 ## ScreenUtil--屏幕相关工具类
+   #### getScreenSize--获取屏幕尺寸
+   #### getScreenOrientation--获取屏幕方向
 
 ## TimeCounter--计时器
    #### 1.初步使用
