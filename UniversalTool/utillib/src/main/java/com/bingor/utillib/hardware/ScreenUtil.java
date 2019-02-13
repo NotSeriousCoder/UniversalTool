@@ -16,10 +16,6 @@ public class ScreenUtil {
         return size;
     }
 
-    /**
-     * @param context
-     * @return Configuration.ORIENTATION_PORTRAIT || Configuration.ORIENTATION_LANDSCAPE || Configuration.ORIENTATION_UNDEFINE
-     */
     public static int getScreenOrientation(Context context) {
         return context.getResources().getConfiguration().orientation;
     }
