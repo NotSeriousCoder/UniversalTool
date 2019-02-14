@@ -17,15 +17,12 @@ public class ScreenUtil {
         return size;
     }
 
+    //Configuration.ORIENTATION_PORTRAIT || Configuration.ORIENTATION_LANDSCAPE || Configuration.ORIENTATION_UNDEFINE
     public static int getScreenOrientation(Context context) {
         return context.getResources().getConfiguration().orientation;
     }
 
-    /**
-     * 不能有注释吗？
-     * @param context
-     * @return
-     */
+    //返回4个方向 0 90 180 270
     public static int getScreenRotation(Context context) {
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         return wm.getDefaultDisplay().getRotation();

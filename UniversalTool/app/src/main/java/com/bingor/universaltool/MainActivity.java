@@ -2,8 +2,11 @@ package com.bingor.universaltool;
 
 import android.content.Intent;
 import android.graphics.Point;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import com.bingor.utillib.hardware.ScreenUtil;
@@ -47,7 +50,33 @@ public class MainActivity extends AppCompatActivity {
 
 //        Point size = ScreenUtil.getScreenSize(this);
 //        tvCounter.setText("width==" + size.x + "   height==" + size.y);
-        tvCounter.setText("orientation==" + ScreenUtil.getScreenRotation(this));
+
+        findViewById(R.id.bt_go).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Handler handler = new Handler() {
+                    @Override
+                    public void handleMessage(Message msg) {
+                        super.handleMessage(msg);
+                        tvCounter.setText("orientation==" + ScreenUtil.getScreenRotation(MainActivity.this));
+                    }
+                };
+                new Thread() {
+                    @Override
+                    public void run() {
+                        super.run();
+                        while (true) {
+                            try {
+                                sleep(1000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            handler.sendEmptyMessage(1);
+                        }
+                    }
+                }.start();
+            }
+        });
 
 
     }
