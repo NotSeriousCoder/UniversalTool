@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.bingor.utillib.hardware.ScreenUtil;
+import com.bingor.utillib.log.Log;
 
 public class MainActivity extends AppCompatActivity {
     private TextView tvCounter;
@@ -77,6 +78,22 @@ public class MainActivity extends AppCompatActivity {
                 }.start();
             }
         });
+
+        Log.TAG = "TEST";
+        Log.isDebug = true;
+        Log.v("test");
+        Log.d("test");
+        Log.i("test");
+        Log.w("test");
+        Log.e("test");
+        Log.wtf("test");
+
+        Log.v("LALA", "test");
+        Log.d("LALA", "test");
+        Log.i("LALA", "test");
+        Log.w("LALA", "test");
+        Log.e("LALA", "test");
+        Log.wtf("LALA", "test");
 
 
     }
