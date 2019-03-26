@@ -20,7 +20,8 @@
 
 ## ScreenUtil--屏幕相关工具类
    ###### getScreenSize--获取屏幕尺寸
-   ###### getScreenOrientation--获取屏幕方向
+   ###### getScreenOrientation--获取屏幕方向（横竖）
+   ###### getScreenRotation--获取屏幕方向（4向）
 
 ## TimeCounter--计时器
    #### 1.初步使用
@@ -63,5 +64,25 @@
 		File image = TakePictureUtil.handleResult(activity, requestCode, resultCode, data, target);
 		...
 	}
-	
+
+## Log--打Log
+   ####	1.使用方法
+   
+   	//和系统的Log差不多，不过把TAG声明为静态变量，全局初始化即可，也可以临时传入
+	//可以设置isDebug，false的时候Log不输出
+	Log.TAG = "TEST";
+        Log.isDebug = true;
+        Log.v("test");
+        Log.d("test");
+        Log.i("test");
+        Log.w("test");
+        Log.e("test");
+        Log.wtf("test");
+
+        Log.v("LALA", "test");
+        Log.d("LALA", "test");
+        Log.i("LALA", "test");
+        Log.w("LALA", "test");
+        Log.e("LALA", "test");
+        Log.wtf("LALA", "test");
 	
