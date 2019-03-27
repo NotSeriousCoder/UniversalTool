@@ -8,103 +8,128 @@ import android.text.TextUtils;
  */
 
 public class Log {
-    public static String TAG = "TEST";
+    private static String TAG = "TEST";
     public static boolean isDebug = true;
 
-    public static void v(String tag, String... content) {
-        if (isDebug && !TextUtils.isEmpty(tag) && content != null && content.length > 0) {
-            String contentStr = "";
-            for (String con : content) {
-                if (!TextUtils.isEmpty(con)) {
-                    contentStr += con + "  ";
-                }
+    public static Log setTag(String tag) {
+        if (TextUtils.isEmpty(tag)) {
+            try {
+                throw new Exception("tag can not be empty");
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            android.util.Log.v(tag, contentStr);
+        } else {
+            Log.TAG = tag;
+        }
+        return new Log();
+    }
+
+    public static void v(String content) {
+        if (isDebug && !TextUtils.isEmpty(content)) {
+            android.util.Log.v(TAG, content);
         }
     }
 
-    public static void d(String tag, String... content) {
-        if (isDebug && !TextUtils.isEmpty(tag) && content != null && content.length > 0) {
-            String contentStr = "";
-            for (String con : content) {
-                if (!TextUtils.isEmpty(con)) {
-                    contentStr += con + "  ";
-                }
-            }
-            android.util.Log.d(tag, contentStr);
+    public static void d(String content) {
+        if (isDebug && !TextUtils.isEmpty(content)) {
+            android.util.Log.d(TAG, content);
         }
     }
 
-    public static void i(String tag, String... content) {
-        if (isDebug && !TextUtils.isEmpty(tag) && content != null && content.length > 0) {
-            String contentStr = "";
-            for (String con : content) {
-                if (!TextUtils.isEmpty(con)) {
-                    contentStr += con + "  ";
-                }
-            }
-            android.util.Log.i(tag, contentStr);
+    public static void i(String content) {
+        if (isDebug && !TextUtils.isEmpty(content)) {
+            android.util.Log.i(TAG, content);
         }
     }
 
-    public static void w(String tag, String... content) {
-        if (isDebug && !TextUtils.isEmpty(tag) && content != null && content.length > 0) {
-            String contentStr = "";
-            for (String con : content) {
-                if (!TextUtils.isEmpty(con)) {
-                    contentStr += con + "  ";
-                }
-            }
-            android.util.Log.w(tag, contentStr);
+    public static void w(String content) {
+        if (isDebug && !TextUtils.isEmpty(content)) {
+            android.util.Log.w(TAG, content);
         }
     }
 
-    public static void e(String tag, String... content) {
-        if (isDebug && !TextUtils.isEmpty(tag) && content != null && content.length > 0) {
-            String contentStr = "";
-            for (String con : content) {
-                if (!TextUtils.isEmpty(con)) {
-                    contentStr += con + "  ";
-                }
-            }
-            android.util.Log.e(tag, contentStr);
+    public static void e(String content) {
+        if (isDebug && !TextUtils.isEmpty(content)) {
+            android.util.Log.e(TAG, content);
         }
     }
 
-    public static void wtf(String tag, String... content) {
-        if (isDebug && !TextUtils.isEmpty(tag) && content != null && content.length > 0) {
-            String contentStr = "";
-            for (String con : content) {
-                if (!TextUtils.isEmpty(con)) {
-                    contentStr += con + "  ";
-                }
-            }
-            android.util.Log.wtf(tag, contentStr);
+    public static void wtf(String content) {
+        if (isDebug && !TextUtils.isEmpty(content)) {
+            android.util.Log.wtf(TAG, content);
         }
     }
 
     public static void v(String... content) {
-        Log.v(TAG, content);
+        if (content != null && content.length > 0) {
+            String contentStr = "";
+            for (String con : content) {
+                if (!TextUtils.isEmpty(con)) {
+                    contentStr += con + "  ";
+                }
+            }
+            Log.v(contentStr);
+        }
     }
 
     public static void d(String... content) {
-        Log.d(TAG, content);
+        if (content != null && content.length > 0) {
+            String contentStr = "";
+            for (String con : content) {
+                if (!TextUtils.isEmpty(con)) {
+                    contentStr += con + "  ";
+                }
+            }
+            Log.d(contentStr);
+        }
     }
 
     public static void i(String... content) {
-        Log.i(TAG, content);
+        if (content != null && content.length > 0) {
+            String contentStr = "";
+            for (String con : content) {
+                if (!TextUtils.isEmpty(con)) {
+                    contentStr += con + "  ";
+                }
+            }
+            Log.i(contentStr);
+        }
     }
 
     public static void w(String... content) {
-        Log.w(TAG, content);
+        if (content != null && content.length > 0) {
+            String contentStr = "";
+            for (String con : content) {
+                if (!TextUtils.isEmpty(con)) {
+                    contentStr += con + "  ";
+                }
+            }
+            Log.w(contentStr);
+        }
     }
 
     public static void e(String... content) {
-        Log.e(TAG, content);
+        if (content != null && content.length > 0) {
+            String contentStr = "";
+            for (String con : content) {
+                if (!TextUtils.isEmpty(con)) {
+                    contentStr += con + "  ";
+                }
+            }
+            Log.e(contentStr);
+        }
     }
 
     public static void wtf(String... content) {
-        Log.wtf(TAG, content);
+        if (content != null && content.length > 0) {
+            String contentStr = "";
+            for (String con : content) {
+                if (!TextUtils.isEmpty(con)) {
+                    contentStr += con + "  ";
+                }
+            }
+            Log.wtf(contentStr);
+        }
     }
 
 }
