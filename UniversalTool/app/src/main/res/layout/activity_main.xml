@@ -20,4 +20,10 @@
         android:layout_height="wrap_content"
         android:text="go" />
 
+    <Button
+        android:id="@+id/bt_test"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="test" />
+
 </LinearLayout>

@@ -10,6 +10,7 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.provider.Settings;
+import android.support.annotation.RequiresPermission;
 import android.telephony.TelephonyManager;
 
 
@@ -30,36 +31,6 @@ public class DeviceUtil {
     private static final String TAG = "DeviceUtil";
 
     public static final String MODEL_HUAWEI = "HUAWEI";
-
-
-    /**
-     * 获取手机型号
-     *
-     * @return
-     */
-    public static String getPhoneModel() {
-        String phoneModel = "";
-        try {
-            phoneModel = Build.BRAND + " " + Build.MODEL;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return phoneModel;
-    }
-
-
-    /**
-     * 获取系统版本
-     *
-     * @return
-     */
-    public static String getSystemVersion() {
-        return "Android " + Build.VERSION.RELEASE;
-    }
-
-    public static TelephonyManager getTelephoneManager(Context context) {
-        return (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-    }
 
     /**
      * 查找设备是否存在对应包名的APP
@@ -166,7 +137,49 @@ public class DeviceUtil {
     }
 
 
-    public static String getImeiId(Activity activity) {
-        return Settings.Secure.getString(activity.getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+    public static String getAndroidId(Context context) {
+        return Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
     }
+
+    @RequiresPermission(android.Manifest.permission.READ_PHONE_STATE)
+    public static final String getIMEI(Context context) {
+        try {
+            TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+            String imei = telephonyManager.getDeviceId();
+            if (imei == null) {
+                imei = "";
+            }
+            return imei;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
+
+    /**
+     * 获取手机品牌型号
+     *
+     * @return
+     */
+    public static String getPhoneModel() {
+        String phoneModel = "";
+        try {
+            phoneModel = Build.BRAND + "--" + Build.MODEL;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return phoneModel;
+    }
+
+
+    /**
+     * 获取系统版本
+     *
+     * @return
+     */
+    public static String getSystemVersion() {
+        return "Android " + Build.VERSION.RELEASE;
+    }
+
+
 }

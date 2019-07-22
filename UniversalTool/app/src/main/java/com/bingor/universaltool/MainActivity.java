@@ -1,7 +1,6 @@
 package com.bingor.universaltool;
 
 import android.content.Intent;
-import android.graphics.Point;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.bingor.utillib.hardware.DeviceUtil;
 import com.bingor.utillib.hardware.ScreenUtil;
 import com.bingor.utillib.log.Log;
 
@@ -79,23 +79,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Log.TAG = "TEST";
-        Log.isDebug = true;
-        Log.v("test");
-        Log.d("test");
-        Log.i("test");
-        Log.w("test");
-        Log.e("test");
-        Log.wtf("test");
-
-        Log.v("LALA", "test");
-        Log.d("LALA", "test");
-        Log.i("LALA", "test");
-        Log.w("LALA", "test");
-        Log.e("LALA", "test");
-        Log.wtf("LALA", "test");
-
-
+        findViewById(R.id.bt_test).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Log.d(DeviceUtil.getImeiId(MainActivity.this));
+                Log.d(DeviceUtil.getSystemVersion());
+            }
+        });
     }
 
     @Override

@@ -17,12 +17,16 @@ import com.bingor.utillib.hardware.DeviceUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by HXB on 2017-06-30.
  */
 public class PermissionApplier {
+    public static final int PERMISSION_SYSTEM_DENIED = -5;
+    private static Map<String, Long> permissionApplyTime = new HashMap<>();
     private String[] permissions;
     //权限请求次数
     private int permissionRequestCount = 0;
@@ -144,6 +148,9 @@ public class PermissionApplier {
         //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
         //            act.requestPermissions(permissions, reqCode);
         //        } else {
+        for (String permission : permissions) {
+            permissionApplyTime.put(permission, System.currentTimeMillis());
+        }
         ActivityCompat.requestPermissions(act, permissions, reqCode);
         //        }
     }
@@ -152,6 +159,9 @@ public class PermissionApplier {
      * 请求权限
      */
     private static void requestPermissions(Fragment frg, int reqCode, String... permissions) {
+        for (String permission : permissions) {
+            permissionApplyTime.put(permission, System.currentTimeMillis());
+        }
         frg.requestPermissions(permissions, reqCode);
     }
 
@@ -256,6 +266,21 @@ public class PermissionApplier {
         context.startActivity(intent);
     }
 
+    /**
+     * 是不是系统自动拒绝
+     *
+     * @param permission
+     * @return
+     */
+    public static boolean isSystemReject(String permission) {
+        Long timeApply = permissionApplyTime.get(permission);
+        if (timeApply == null) {
+            return false;
+        }
+        long delta = System.currentTimeMillis() - timeApply;
+        return (delta) < 200;
+    }
+
     public OnPermissionListener getOnPermissionListener() {
         return onPermissionListener;
     }
@@ -331,5 +356,16 @@ public class PermissionApplier {
         public void onPermissionPossess();
 
         public void onNeedManual(List<String> persLack);
+    }
+
+
+    private static String arr2String(String[] arr) {
+        StringBuffer res = new StringBuffer();
+        for (String temp : arr) {
+            res.append(temp + ", ");
+        }
+        res.deleteCharAt(res.length() - 1);
+        res.deleteCharAt(res.length() - 1);
+        return res.toString();
     }
 }
