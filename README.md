@@ -12,7 +12,7 @@
   
 ### 2.在你要用这个控件的模块gradle文件
 	implementation 'com.github.NotSeriousCoder:UniversalTool:{lastversion}'
-	lastversion请看release
+	lastversion请看releases
 
 ## 使用方法
 
