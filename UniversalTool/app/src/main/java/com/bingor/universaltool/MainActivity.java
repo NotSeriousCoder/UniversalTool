@@ -1,99 +1,62 @@
 package com.bingor.universaltool;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.bingor.utillib.hardware.DeviceUtil;
 import com.bingor.utillib.hardware.ScreenUtil;
+import com.bingor.utillib.log.LocalLogger;
 import com.bingor.utillib.log.Log;
+import com.bingor.utillib.system.PermissionApplier;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private TextView tvCounter;
 
+    @SuppressLint("MissingPermission")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        //选择本地图片
-//        //cut：true==裁剪 false==不裁减
-//        TakePictureUtil.pickPhotoLocal(true, activity);
+        if (!PermissionApplier.checkPermissions(this, 0x1020, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            LocalLogger.getInstance().setPath(getPackageName()).open();
+        }
 
-        //拍照
-        //cut：true==裁剪 false==不裁减
-        //file 指定存放拍照图片的地址
-//        TakePictureUtil.takePhotoCamera(true, file, activity);
-
-        tvCounter = findViewById(R.id.tv_counter);
-//        findViewById(R.id.tv_counter).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                TimeCounter.Builder
-//                        .createDefaultCounter((TextView) findViewById(R.id.tv_counter), new TimeCounter.OnTimeCountListener() {
-//                            @Override
-//                            public void onCount(String count) {
-//                                Log.d("HXB", count);
-//                            }
-//
-//                            @Override
-//                            public void onFinish(String textDefault) {
-//                                Log.d("HXB", textDefault);
-//                            }
-//                        })
-//                        .start();
-//            }
-//        });
-
-
-//        Point size = ScreenUtil.getScreenSize(this);
-//        tvCounter.setText("width==" + size.x + "   height==" + size.y);
-
-        findViewById(R.id.bt_go).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.bt_log).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Handler handler = new Handler() {
-                    @Override
-                    public void handleMessage(Message msg) {
-                        super.handleMessage(msg);
-                        tvCounter.setText("orientation==" + ScreenUtil.getScreenRotation(MainActivity.this));
-                    }
-                };
-                new Thread() {
-                    @Override
-                    public void run() {
-                        super.run();
-                        while (true) {
-                            try {
-                                sleep(1000);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                            handler.sendEmptyMessage(1);
-                        }
-                    }
-                }.start();
+                EditText editText = findViewById(R.id.et_content);
+                LocalLogger.getInstance().log(editText.getText().toString(), System.currentTimeMillis());
             }
         });
 
-        findViewById(R.id.bt_test).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.bt_close).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Log.d(DeviceUtil.getImeiId(MainActivity.this));
-                Log.d(DeviceUtil.getSystemVersion());
+                LocalLogger.getInstance().close();
             }
         });
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        //接收结果
-        //不裁减的话，target不用传
-        //裁剪的话，传入target，target是接收裁减后图像的File
-//        File image = TakePictureUtil.handleResult(activity, requestCode, resultCode, data, target);
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 0x1020 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            LocalLogger.getInstance().setPath(getPackageName()).open();
+        }
     }
+
 }

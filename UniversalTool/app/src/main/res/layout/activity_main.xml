@@ -7,23 +7,22 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/tv_counter"
+    <EditText
+        android:id="@+id/et_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="计数器" />
-
-
-    <Button
-        android:id="@+id/bt_go"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="go" />
+        android:lines="4"/>
 
     <Button
-        android:id="@+id/bt_test"
+        android:id="@+id/bt_log"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="test" />
+        android:text="输出日志" />
+
+    <Button
+        android:id="@+id/bt_close"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="关闭日志" />
 
 </LinearLayout>
