@@ -15,13 +15,17 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.bingor.utillib.data.MapUtil;
 import com.bingor.utillib.hardware.DeviceUtil;
 import com.bingor.utillib.hardware.ScreenUtil;
 import com.bingor.utillib.log.LocalLogger;
 import com.bingor.utillib.log.Log;
 import com.bingor.utillib.system.PermissionApplier;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     private TextView tvCounter;
@@ -31,22 +35,24 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if (!PermissionApplier.checkPermissions(this, 0x1020, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-            LocalLogger.getInstance().setPath(getPackageName()).open();
-        }
-
-        findViewById(R.id.bt_log).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                EditText editText = findViewById(R.id.et_content);
-                LocalLogger.getInstance().log(editText.getText().toString(), System.currentTimeMillis());
-            }
-        });
 
         findViewById(R.id.bt_close).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LocalLogger.getInstance().close();
+                Map<String, Integer> params = new HashMap<>();
+                params.put("tom", 2);
+                params.put("ken", 2);
+                params.put("alex", 2);
+                params.put("Brown", 2);
+                params.put("James", 2);
+                params.put("cake", 2);
+                params.put("cber", 2);
+                params.put("Drecer", 2);
+                Log.d(params.toString());
+                Log.d("=======================================");
+
+                LinkedHashMap res = MapUtil.sortMap(params, true);
+                Log.d(res.toString());
             }
         });
     }
@@ -54,9 +60,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == 0x1020 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            LocalLogger.getInstance().setPath(getPackageName()).open();
-        }
     }
 
 }
